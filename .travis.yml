@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+env:
+  global:
+    - REGISTRY_USER=staticlibot
+script:
+  - docker build --tag staticli/rake .
+  - docker run staticli/rake
+
+after_script:
+  - docker images
+
+before_deploy:
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+deploy:
+  provider: script
+  script: docker push staticli/rake
+  on:
+    branch: master
