@@ -2,7 +2,7 @@
 #
 # Alice Kaerast
 
-FROM ruby:2.5.1-alpine3.7
+FROM ruby:2.7.1-alpine
 
 RUN apk --update --no-cache add --virtual build_deps build-base ruby-dev libc-dev linux-headers shadow su-exec \
     && gem install --verbose --no-document bundler \
